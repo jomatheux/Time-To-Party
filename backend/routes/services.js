@@ -20,5 +20,12 @@ router
 router.route("/services/:id")
 .get((req, res)=> serviceController.get(req, res));
 
+//Delete(deletando pelo "id")
+router.route("/services/:id")
+.delete((req, res)=> serviceController.delete(req, res));
+
+
+
+
 
 export default router;

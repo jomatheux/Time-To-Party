@@ -56,6 +56,29 @@ const serviceController = {
         } catch (error) {
             console.log(error);
         }
+    },
+
+    //Função para deletar um serviço pelo ID
+
+    delete: async(req, res) => {
+        try {
+            const id = req.params.id;
+
+            if (!mongoose.Types.ObjectId.isValid(id)) {
+                return res.status(400).json({ msg: 'ID inválido' });
+            }
+
+            const response = await ServiceModel.findByIdAndDelete(id);
+            
+            if (!response) {
+                res.status(404).json({ msg: "Serviço não encontrado." });
+                return;
+            }
+
+            res.status(200).json({response, msg:"Serviço deletado com sucesso."});
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 }
