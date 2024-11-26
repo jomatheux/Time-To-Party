@@ -1,0 +1,9 @@
+POST http://localhost:3000/api/services
+Content-Type: application/json
+
+{
+    "name": "test",
+    "description": "Test service",
+    "price": 1400,
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Falphaconvites.com.br%2Ffestas-antes-da-formatura%2F&psig=AOvVaw3vbpWEF0EWk7stSBFM7Co5&ust=1732737244243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLizn7Lj-okDFQAAAAAdAAAAABAE" 
+}

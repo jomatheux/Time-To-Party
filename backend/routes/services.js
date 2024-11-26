@@ -6,4 +6,11 @@ import serviceController from '../controllers/serviceController.js';
 
 //Funções
 
+//POST
+router
+    .route("/services")
+    .post((req, res) => serviceController.create(req, res));
+
+
+
 export default router;
