@@ -79,7 +79,41 @@ const serviceController = {
         } catch (error) {
             console.log(error);
         }
+    },
+
+    // Função para atualizar um serviço pelo id, passando o serviço no body da requisição
+
+    update: async(req , res) => {
+        try {
+            const id = req.params.id;
+
+            if (!mongoose.Types.ObjectId.isValid(id)) {
+                return res.status(400).json({ msg: 'ID inválido' });
+            }
+
+            const service = {
+                name: req.body.name,
+                description: req.body.description,
+                price: req.body.price,
+                image: req.body.image
+            };
+
+            const updatedService = await ServiceModel.findByIdAndUpdate(id, service);
+
+            if (!updatedService) {
+                res.status(404).json({ msg: "Serviço não encontrado." });
+                return;
+            }
+
+            res.status(200).json({updatedService, msg: "Serviço atualizado com sucesso."});
+
+
+        } catch (error) {
+            console.log(error);
+        }
     }
+
+
 
 }
 

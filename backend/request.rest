@@ -17,3 +17,14 @@ GET http://localhost:3000/api/services/67462b7e4d1dafede4a84d16
 
 ###
 DELETE  http://localhost:3000/api/services/674627e70f4ee60b511b6b7b
+
+###
+PUT  http://localhost:3000/api/services/67462b7e4d1dafede4a84d16
+Content-Type: application/json
+
+{
+    "name": "Teste Atualização",	
+    "description": "Test service3",
+    "price": 1700,
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Falphaconvites.com.br%2Ffestas-antes-da-formatura%2F&psig=AOvVaw3vbpWEF0EWk7stSBFM7Co5&ust=1732737244243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLizn7Lj-okDFQAAAAAdAAAAABAE" 
+}
