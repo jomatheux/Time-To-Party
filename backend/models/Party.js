@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const {Schema} = mongoose;
 
-import serviceSchema from "./Service"
+import {serviceSchema} from "./Service"
 
-const userSchema = new Schema({
+const partySchema = new Schema({
     title:{
         type: String,
         required: true
@@ -13,7 +13,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    descrption:{
+    description:{
         type: String,
         required: true
     },
@@ -30,6 +30,6 @@ const userSchema = new Schema({
     }
 },{timestamps: true});
 
-const User = mongoose.model("User", userSchema);
+const Party = mongoose.model("Party", partySchema);
 
-export {User, userSchema};
+export default Party;
