@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const {Schema} = mongoose;
 
-import {serviceSchema} from "./Service"
+import {serviceSchema} from "./Service.js"
 
 const partySchema = new Schema({
     title:{
