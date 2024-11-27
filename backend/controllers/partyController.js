@@ -25,13 +25,13 @@ const partyController = {
             }
 
             if(party.services && !checkPartyBudget(party.budget, party.services)){
-                res.status(406).json({message: "O seu orçamento é insuficiente"});
+                res.status(406).json({msg: "O seu orçamento é insuficiente"});
                 return;
             }
 
             const response = await Party.create(party);
 
-            res.status(201).json({response ,message: 'Festa criada com sucesso' });
+            res.status(201).json({response ,msg: 'Festa criada com sucesso' });
 
         } catch (error) {
             console.log(error);
@@ -41,7 +41,7 @@ const partyController = {
     getAll: async (req, res) =>{
         try {
             const parties = await Party.find();
-            res.status(200).json({parties ,message:"Dados de festas recuperados com sucesso!"})
+            res.status(200).json({parties ,msg:"Dados de festas recuperados com sucesso!"})
         } catch (error) {
             console.log(error);
         }
@@ -65,6 +65,28 @@ const partyController = {
             res.status(200).json({ party, msg: "Festa recuperada com sucesso" });
         } catch (error) {
             console.log(error);
+        }
+    },
+    // Função para deletar uma festa
+    delete: async (req, res) => {
+        try {
+            const id = req.params.id;
+            
+            if (!mongoose.Types.ObjectId.isValid(id)) {
+                return res.status(400).json({ msg: 'ID inválido' });
+            }
+
+            const party = await Party.findById(id);
+
+            if (!party) {
+                res.status(404).json({ msg: "Festa não encontrada." });
+                return;
+            }
+            const deletedParty = await Party.findByIdAndDelete(id);
+
+            res.status(200).json({ deletedParty, msg: "Festa deletada com sucesso." });
+        } catch (error) {
+            console.log(error)
         }
     }
 }

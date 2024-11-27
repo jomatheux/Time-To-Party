@@ -21,4 +21,9 @@ router
     .route('/party/:id')
     .get((req, res) => partyController.get(req, res));
 
+//DELETE(Deleta uma festa pelo "id")
+router
+    .route('/party/:id')
+    .delete((req, res) => partyController.delete(req, res));
+
 export default router;
