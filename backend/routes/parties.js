@@ -15,4 +15,10 @@ router
     .route('/party')
     .get((req, res) => partyController.getAll(req, res));
 
+//GET(Uma festa especifica)
+
+router
+    .route('/party/:id')
+    .get((req, res) => partyController.get(req, res));
+
 export default router;

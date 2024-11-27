@@ -1,5 +1,6 @@
 import { response } from "express";
 import Party from "../models/Party.js";
+import mongoose from "mongoose";
 
 const checkPartyBudget = (budget, services) =>{
     const priceSum = services.reduce((sum, service) => sum + service.price, 0);
@@ -39,8 +40,29 @@ const partyController = {
     // Função para resgatar todas as festas
     getAll: async (req, res) =>{
         try {
-            const response = await Party.find();
-            res.status(200).json({response ,message:"Dados de festas recuperados com sucesso!"})
+            const parties = await Party.find();
+            res.status(200).json({parties ,message:"Dados de festas recuperados com sucesso!"})
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    // Função para resgatar uma festa pelo ID
+    get: async (req, res) => {
+        try {
+            const id = req.params.id;
+
+            if (!mongoose.Types.ObjectId.isValid(id)) {
+                return res.status(400).json({ msg: 'ID inválido' });
+            }
+            const party = await Party.findById(id);
+
+            if (!response) {
+                res.status(404).json({ msg: "Festa não encontrada." });
+                return;
+            }
+
+            res.status(200).json({ party, msg: "Festa recuperada com sucesso" });
         } catch (error) {
             console.log(error);
         }
