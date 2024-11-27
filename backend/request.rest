@@ -28,3 +28,29 @@ Content-Type: application/json
     "price": 1700,
     "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Falphaconvites.com.br%2Ffestas-antes-da-formatura%2F&psig=AOvVaw3vbpWEF0EWk7stSBFM7Co5&ust=1732737244243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLizn7Lj-okDFQAAAAAdAAAAABAE" 
 }
+
+###
+POST http://localhost:3000/api/party
+Content-Type: application/json
+
+{
+    "title": "Meu evento 5",
+    "author": "Joma 5",
+    "description": "Uma festa de aniversário 3",
+    "budget": 9000,
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Falphaconvites.com.br%2Ffestas-antes-da-formatura%2F&psig=AOvVaw3vbpWEF0EWk7stSBFM7Co5&ust=1732737244243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLizn7Lj-okDFQAAAAAdAAAAABAE",
+    "services": [
+        {
+            "name": "test5",
+            "description": "Test service3",
+            "price": 1600,
+            "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Falphaconvites.com.br%2Ffestas-antes-da-formatura%2F&psig=AOvVaw3vbpWEF0EWk7stSBFM7Co5&ust=1732737244243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLizn7Lj-okDFQAAAAAdAAAAABAE" 
+        },
+        {
+            "name": "test5",
+            "description": "Test service 4",
+            "price": 1500,
+            "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Falphaconvites.com.br%2Ffestas-antes-da-formatura%2F&psig=AOvVaw3vbpWEF0EWk7stSBFM7Co5&ust=1732737244243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLizn7Lj-okDFQAAAAAdAAAAABAE" 
+        }
+    ]
+}
