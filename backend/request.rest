@@ -1,3 +1,5 @@
+//-----------------------SERVICES------------------------
+
 POST http://localhost:3000/api/services
 Content-Type: application/json
 
@@ -29,6 +31,9 @@ Content-Type: application/json
     "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Falphaconvites.com.br%2Ffestas-antes-da-formatura%2F&psig=AOvVaw3vbpWEF0EWk7stSBFM7Co5&ust=1732737244243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLizn7Lj-okDFQAAAAAdAAAAABAE" 
 }
 
+//-----------------------PARTY------------------------
+
+
 ###
 POST http://localhost:3000/api/party
 Content-Type: application/json
@@ -58,7 +63,33 @@ Content-Type: application/json
 GET http://localhost:3000/api/party
 
 ###
-GET http://localhost:3000/api/party/67476334c43bd9d65a364946
+GET http://localhost:3000/api/party/674762d6c43bd9d65a364944
 
 ###
-DELETE  http://localhost:3000/api/party/67476334c43bd9d65a364946
+DELETE  http://localhost:3000/api/party/674762d6c43bd9d65a364944
+
+###
+PUT http://localhost:3000/api/party/674762d6c43bd9d65a364945
+Content-Type: application/json
+
+{
+    "title": "Evento atuallizado teste",
+    "author": "Jomas",
+    "description": "Uma festa de aniversário atualizada teste",
+    "budget": 10000,
+    "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Falphaconvites.com.br%2Ffestas-antes-da-formatura%2F&psig=AOvVaw3vbpWEF0EWk7stSBFM7Co5&ust=1732737244243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLizn7Lj-okDFQAAAAAdAAAAABAE",
+    "services": [
+        {
+            "name": "test5",
+            "description": "Test service3",
+            "price": 1600,
+            "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Falphaconvites.com.br%2Ffestas-antes-da-formatura%2F&psig=AOvVaw3vbpWEF0EWk7stSBFM7Co5&ust=1732737244243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLizn7Lj-okDFQAAAAAdAAAAABAE" 
+        },
+        {
+            "name": "test5",
+            "description": "Test service 4",
+            "price": 1500,
+            "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Falphaconvites.com.br%2Ffestas-antes-da-formatura%2F&psig=AOvVaw3vbpWEF0EWk7stSBFM7Co5&ust=1732737244243000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLizn7Lj-okDFQAAAAAdAAAAABAE" 
+        }
+    ]
+}

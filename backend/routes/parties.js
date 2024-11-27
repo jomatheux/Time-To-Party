@@ -26,4 +26,9 @@ router
     .route('/party/:id')
     .delete((req, res) => partyController.delete(req, res));
 
+//PUT(Atualiza uma festa pelo "id")
+router
+    .route('/party/:id')
+    .put((req, res) => partyController.update(req, res));
+
 export default router;

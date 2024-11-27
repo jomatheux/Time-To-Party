@@ -88,6 +88,43 @@ const partyController = {
         } catch (error) {
             console.log(error)
         }
+    },
+
+    // Função para atualizar uma festa passando o id
+    update: async (req, res) => {
+        try {
+            const id = req.params.id;
+            
+            if (!mongoose.Types.ObjectId.isValid(id)) {
+                return res.status(400).json({ msg: 'ID inválido' });
+            }
+
+            const party = {
+                title: req.body.title,
+                author: req.body.author,
+                description: req.body.description,
+                budget: req.body.budget,
+                image: req.body.image,
+                services: req.body.services
+            }
+
+            if(party.services &&!checkPartyBudget(party.budget, party.services)){
+                res.status(406).json({msg: "O seu orçamento é insuficiente"});
+                return;
+            }
+
+            const updatedParty = await Party.findByIdAndUpdate(id, party);
+
+            if (!updatedParty) {
+                res.status(404).json({ msg: "Festa não encontrada." });
+                return;
+            }
+
+            res.status(200).json({party, msg: "Dados da festa atualizados com sucesso!"});
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
