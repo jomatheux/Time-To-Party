@@ -1,3 +1,4 @@
+import { response } from "express";
 import Party from "../models/Party.js";
 
 const checkPartyBudget = (budget, services) =>{
@@ -31,6 +32,15 @@ const partyController = {
 
             res.status(201).json({response ,message: 'Festa criada com sucesso' });
 
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    // Função para resgatar todas as festas
+    getAll: async (req, res) =>{
+        try {
+            const response = await Party.find();
+            res.status(200).json({response ,message:"Dados de festas recuperados com sucesso!"})
         } catch (error) {
             console.log(error);
         }
