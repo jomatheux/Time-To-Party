@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
+import "dotenv/config";
 
 async function main() {
     try {
 
         mongoose.set("strictQuery", true);
         // Connect to MongoDB
-        await mongoose.connect("mongodb+srv://jomatheux:LH.enMuGntF.j34@cluster0.nqao4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+        await mongoose.connect(process.env.MONGO_URL);
 
         console.log("Conectou com o banco")
         
