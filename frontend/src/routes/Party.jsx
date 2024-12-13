@@ -1,11 +1,18 @@
-import partyFetch from "../axios/config"
-import { useState, useEffect } from "react"
-import { useParams, Link , useNavigate} from "react-router-dom"
+import partyFetch from "../axios/config";
+import { useState, useEffect } from "react";
+import { useParams, Link , useNavigate} from "react-router-dom";
+
+import useToast from "../hooks/useToast.jsx";
+
+import './Party.css';
 const Party = () => {
 
   const {id} = useParams();
 
   const [party, setParty] = useState(null);
+
+  const navigate = useNavigate();
+
 
   //Carregando festas
   useEffect(() => {
@@ -13,10 +20,21 @@ const Party = () => {
         const res = await partyFetch.get(`/party/${id}`);
         console.log(res.data);
         setParty(res.data.party);
-      };
+    };
 
     loadParty();
   },[]);
+
+  //Deletando festa
+  const deleteParty = async () => {
+    if(window.confirm("Tem certeza que deseja excluir esta festa?")){
+      const res = await partyFetch.delete(`/party/${id}`);
+      if(res.status === 200){
+        navigate("/");
+        useToast(res.data.msg);
+      }
+    }
+  }
 
   if(!party) return <p>Carrengando...</p>;
 
@@ -25,7 +43,7 @@ const Party = () => {
         <h1>{party.title}</h1>
         <div className="actions-container">
             <Link className="btn">Editar</Link>
-            <button className="btn-secondary">Excluir</button>
+            <button onClick={deleteParty} className="btn-secondary">Excluir</button>
         </div>
         <p>Orçamento: R${party.budget}</p>
         <h3>Serviços Contratados:</h3>
