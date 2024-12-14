@@ -29,7 +29,6 @@ const CreateParty = () => {
     const loadSevices = async () => {
       const res = await partyFetch.get("/services");
       setServices(res.data.response);
-      console.log(res);
     }
 
     loadSevices();
