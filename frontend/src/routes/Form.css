@@ -4,8 +4,15 @@
     margin-bottom: 1rem;
 }
 
+.form-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .form-page p{
-    color: #7703fc;
+    color: #004AF7;
 }
 
 .form-page form{
@@ -14,7 +21,7 @@
     border-radius: 12px;
     padding: 2rem;
     max-width: 600px;
-    margin: 0 auto 2rem; 
+    margin: 0 auto 2rem;
 }
 
 .form-page label{
@@ -23,6 +30,10 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.form-page input{
+    margin-bottom: 1rem;
 }
 
 .form-page input,

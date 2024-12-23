@@ -10,19 +10,52 @@ import Home from './routes/Home.jsx'
 import CreateParty from './routes/CreateParty.jsx'
 import Party from './routes/Party.jsx'
 import EditParty from './routes/EditParty.jsx'
+import Login from './routes/Login.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
+import Register from './routes/Register.jsx'
 
 const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <App/>,
-      children: [
-        {path: '/', element: <Home />},
-        {path: '/party/new', element: <CreateParty />},
-        {path: '/party/:id', element: <Party />},
-        {path: '/party/edit/:id', element: <EditParty />},
-      ]
-    }
-])
+  {
+    path: '/',
+    element: <App />,
+    children: [
+      { path: '/', element: <Login /> },
+      { path: '/register', element: <Register />},
+      { 
+        path: '/home', 
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
+      },
+      { 
+        path: '/party/new', 
+        element: (
+          <ProtectedRoute>
+            <CreateParty />
+          </ProtectedRoute>
+        ),
+      },
+      { 
+        path: '/party/:id', 
+        element: (
+          <ProtectedRoute>
+            <Party />
+          </ProtectedRoute>
+        ),
+      },
+      { 
+        path: '/party/edit/:id', 
+        element: (
+          <ProtectedRoute>
+            <EditParty />
+          </ProtectedRoute>
+        ),
+      },
+    ],
+  },
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

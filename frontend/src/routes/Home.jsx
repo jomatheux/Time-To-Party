@@ -11,10 +11,19 @@ import './Home.css'
 const Home = () => {
   const [parties, setParties] = useState([]);
 
+  const token = sessionStorage.getItem("token");
+
   //Load parties
-  useEffect(() =>{
-    const loadParties = async () =>{
-      const res = await partyFetch.get("/party");
+  useEffect(() => {
+    const loadParties = async () => {
+
+      if (!token) return;
+      
+      const res = await partyFetch.get("/party", {
+        headers: {
+          Authorization: `Bearer ${token}`, // Envia o token no cabeçalho
+        }
+      },);
 
       console.log(res);
 
@@ -22,9 +31,9 @@ const Home = () => {
     };
 
     loadParties();
-  },[]);
+  }, []);
 
-  if(!parties) return <p>Carregando...</p>;
+  if (!parties) return <p>Carregando...</p>;
 
   return (
     <div className='home'>
@@ -33,11 +42,11 @@ const Home = () => {
         {parties.lenght === 0 && <p>Não há festas cadastradas!</p>}
         {parties.map((party) => (
           <div className="party" key={party._id}>
-              <img src={party.image} alt={party.title} />
-              <h3>{party.title}</h3>
-              <Link to={`/party/${party._id}`} className='btn-secondary'>
-                Detalhes
-              </Link>
+            <img src={party.image} alt={party.title} />
+            <h3>{party.title}</h3>
+            <Link to={`/party/${party._id}`} className='btn-secondary'>
+              Detalhes
+            </Link>
           </div>
         ))}
       </div>

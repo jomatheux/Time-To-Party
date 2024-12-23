@@ -30,7 +30,13 @@ const EditParty = () => {
         };
 
         const loadParty = async () => {
-            const res = await partyFetch.get(`/party/${id}`);
+            const token = sessionStorage.getItem('token',);
+
+            const res = await partyFetch.get(`/party/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`, // Envia o token no cabeçalho
+                }
+            },);
             setParty(res.data.party);
         };
 
@@ -58,13 +64,19 @@ const EditParty = () => {
         e.preventDefault();
         try {
 
-            const res = await partyFetch.put(`/party/${id}`, party);
+            const token = sessionStorage.getItem('token');
+
+            const res = await partyFetch.put(`/party/${id}`, party, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
             if (res.status === 200) {
-                navigate(`/`);                
+                navigate(`/home`);
                 useToast(res.data.msg);
             }
-            
+
         } catch (error) {
             useToast(error.response.data.msg, "error");
         }
@@ -82,27 +94,27 @@ const EditParty = () => {
                     <input type="text"
                         placeholder='Seja criativo...'
                         required
-                        onChange={(e) => setParty({...party, title: e.target.value})}
+                        onChange={(e) => setParty({ ...party, title: e.target.value })}
                         value={party.title} />
                 </label>
                 <label>
                     <span>Anfitrião:</span>
-                    <input type="text" placeholder='Quem está dando a festa' required onChange={(e) => setParty({...party, author: e.target.value})}
+                    <input type="text" placeholder='Quem está dando a festa' required onChange={(e) => setParty({ ...party, author: e.target.value })}
                         value={party.author} />
                 </label>
                 <label>
                     <span>Descrição:</span>
-                    <textarea placeholder='Conte mais sobre a festa...' required onChange={(e) => setParty({...party, description: e.target.value})}
+                    <textarea placeholder='Conte mais sobre a festa...' required onChange={(e) => setParty({ ...party, description: e.target.value })}
                         value={party.description}></textarea>
                 </label>
                 <label>
                     <span>Orçamento:</span>
-                    <input type="number" placeholder='Quanto você pretende investir?' required onChange={(e) => setParty({...party, budget: e.target.value})}
+                    <input type="number" placeholder='Quanto você pretende investir?' required onChange={(e) => setParty({ ...party, budget: e.target.value })}
                         value={party.budget} />
                 </label>
                 <label >
                     <span>Imagem:</span>
-                    <input type="text" placeholder='Insira a URL de uma imagem' onChange={(e) => setParty({...party, image: e.target.value})}
+                    <input type="text" placeholder='Insira a URL de uma imagem' onChange={(e) => setParty({ ...party, image: e.target.value })}
                         value={party.image} />
                 </label>
                 <div>

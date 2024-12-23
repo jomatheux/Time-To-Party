@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - JWT_SECRET=${JWT_SECRET} # JWT key
+      - PORT=${PORT} # numero da porta
+      - MONGO_URI=${MONGO_URI} # URI para conectar no MongoDB
+      - NODE_ENV=${NODE_ENV} # ambiente de execução
+    volumes:
+      - .:/backend/app
+      - /backend/node_modules
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

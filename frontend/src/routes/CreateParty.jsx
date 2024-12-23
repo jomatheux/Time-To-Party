@@ -63,11 +63,13 @@ const CreateParty = () => {
         image,
         services: partyServices,
       }
+
+      const token = sessionStorage.getItem('token');
   
-      const res = await partyFetch.post('/party', newParty);
+      const res = await partyFetch.post('/party', newParty,{headers:{Authorization: `Bearer ${token}`}});
   
       if(res.status === 201){
-        navigate(`/`);
+        navigate(`/home`);
   
         useToast(res.data.msg);
       }      

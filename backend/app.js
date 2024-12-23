@@ -7,6 +7,8 @@ import 'dotenv/config';
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+
 //Iniciando conexão com o Banco de dados
 conn();
 
@@ -17,5 +19,9 @@ app.use("/api", routes);
 
 
 app.listen(process.env.PORT,()=>{
-    console.log('Servidor online...');
+    console.log('Servidor online...');       
 });
+
+if (process.env.NODE_ENV === 'development') {
+    console.log("Estamos no ambiente de desenvolvimento!");
+}
