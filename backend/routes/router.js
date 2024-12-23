@@ -8,6 +8,10 @@ router.use("/", servicesRouter);
 import partyRouter from './parties.js';
 router.use("/", partyRouter);
 
+//Rotas de usuários
+import userRouter from './user.js';
+router.use("/", userRouter);
+
 
 
 export default router;

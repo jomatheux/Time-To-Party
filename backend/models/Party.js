@@ -27,9 +27,10 @@ const partySchema = new Schema({
     },
     services:{
         type: [serviceSchema]
-    }
+    },
+    user: Object,
 },{timestamps: true});
 
 const Party = mongoose.model("Party", partySchema);
 
-export default Party;
+export {Party, partySchema};
