@@ -1,0 +1,15 @@
+.form-login{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    min-height: 500px;
+    min-width: 500px;
+}
+
+.form-login h1{
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #004AF7;
+}
