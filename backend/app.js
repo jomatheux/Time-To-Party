@@ -21,10 +21,24 @@ import routes from './routes/router.js';
 app.use("/api", routes);
 
 //Mock de dados
-Service.createCollection = function(){
-    this.insertMany(servicesmock);
+
+async function initializeDatabase() {
+    try {
+        const collectionExists = await Service.exists({}); // Verifica se já existem documentos na coleção
+
+        if (!collectionExists) { // Cria a coleção apenas se ela estiver vazia
+            console.log("Criando coleção de serviços...");
+            await Service.insertMany(servicesmock); 
+            console.log("Coleção de serviços criada com sucesso!");
+        } else {
+            console.log("Coleção de serviços já existe. Pulando a criação.");
+        }
+    } catch (error) {
+        console.error("Erro ao inicializar o banco de dados:", error);
+    }
 }
-Service.createCollection();
+
+initializeDatabase(); // Executa a função para inicializar o banco de dados
 
 app.listen(process.env.PORT,()=>{
     console.log('Servidor online...');       
